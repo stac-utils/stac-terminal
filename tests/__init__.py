@@ -1,1 +1,1 @@
-"""termstac tests suite."""
+"""stacterm tests suite."""

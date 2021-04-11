@@ -1,4 +1,4 @@
-"""termstac."""
+"""stacterm"""
 
 import pkg_resources
 

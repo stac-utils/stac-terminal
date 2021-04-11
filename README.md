@@ -1,4 +1,4 @@
-# termstac
+# stacterm
 
 This library is for displaying information (tables, calendars, plots, histograms) about [STAC](https://stacspec.org/) Items in the terminal. It takes as input a STAC ItemCollection (a GeoJSON FeatureCollection of STAC Items), either by specifying a filename or by piping output from another program.
 
@@ -7,23 +7,23 @@ This library is for displaying information (tables, calendars, plots, histograms
 Install from PyPi:
 
 ```
-$ pip install termstac
+$ pip install stacterm
 ```
 
 PySTAC and Pandas are required, along with two dependencies for rendering tables (`termtables`) and plots (`plotext`) in the terminal.
 
 ## Usage
 
-The detailed usage examples below are shown using a saved file, however `termstac` can also read in stdin allowing other programs to pipe output to it, such as [pystac-api-client](https://github.com/stac-utils/pystac-api-client).
+The detailed usage examples below are shown using a saved file, however `stacterm` can also read in stdin allowing other programs to pipe output to it, such as [pystac-api-client](https://github.com/stac-utils/pystac-api-client).
 
 ```
 $ export STAC_API_URL=https://earth-search.aws.element84.com/v0
-$ stac-client search --intersects aoi.json --datetime 2020-07-01/2020-12-31 -c sentinel-s2-l2a-cogs landsat-8-l1-c1 | termstac cal --label platform
+$ stac-client search --intersects aoi.json --datetime 2020-07-01/2020-12-31 -c sentinel-s2-l2a-cogs landsat-8-l1-c1 | stacterm cal --label platform
 ```
 
 ![](images/cal.png)
 
-All of the sub-commands in `termstac` can take optional field names. A field name is:
+All of the sub-commands in `stacterm` can take optional field names. A field name is:
 
 - `id`: The ID of the Item
 - `date`: The date portion of the Item's `datetime` field
@@ -33,10 +33,10 @@ All of the sub-commands in `termstac` can take optional field names. A field nam
 
 ### Tables
 
-Use `termstac` to display tabularized data from a saved ItemCollection.
+Use `stacterm` to display tabularized data from a saved ItemCollection.
 
 ```
-$ termstac table items.json
+$ stacterm table items.json
 
 | id                                       | date       |
 |------------------------------------------|------------|
@@ -56,7 +56,7 @@ By default this is a markdown table (note the terminal will not render Markdown)
 The fields displayed can be changed via the `--fields` keyword, and sorted via the `--sort` keyword.
 
 ```
-$ termstac table items.json --fields date eo:cloud_cover collection --sort eo:cloud_cover
+$ stacterm table items.json --fields date eo:cloud_cover collection --sort eo:cloud_cover
 
 | date       | eo:cloud_cover | collection           |
 |------------|----------------|----------------------|
@@ -69,7 +69,7 @@ $ termstac table items.json --fields date eo:cloud_cover collection --sort eo:cl
 The style of the table can also be changed via the `--style` keyword, although it will no longer be usable in a Markdown renderer. See [termtables styles](https://github.com/nschloe/termtables/blob/master/termtables/styles.py) for list of styles.
 
 ```
-$ termstac table items.json --fields id date platform sentinel:grid_square --sort date --style thick
+$ stacterm table items.json --fields id date platform sentinel:grid_square --sort date --style thick
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ id                                       ┃ date       ┃ platform    ┃ sentinel:grid_square ┃
@@ -87,7 +87,7 @@ $ termstac table items.json --fields id date platform sentinel:grid_square --sor
 A UNIX-like calendar (see [`cal`](https://en.wikipedia.org/wiki/Cal_(Unix))) is available to show dates of individual items. By default `cal` will use the field `datetime` (the collection datetime) and group Items by their Collection. These can be overridden by the `--date_field` and `--label_field` keywords. Note that the specified `--date_field` needs to be a date field, such as `created` or `updated`.
 
 ```
-$ termstac cal items.json --date_field created --label_field gsd
+$ stacterm cal items.json --date_field created --label_field gsd
 ```
 
 ![](images/cal2.png)
@@ -97,7 +97,7 @@ $ termstac cal items.json --date_field created --label_field gsd
 Histograms can be created for any numeric field.
 
 ```
-$ termstac hist items.json eo:cloud_cover
+$ stacterm hist items.json eo:cloud_cover
 ```
 
 ![](images/hist.png)
@@ -107,7 +107,7 @@ $ termstac hist items.json eo:cloud_cover
 Plots can be created with 1 or 2 numeric fields. If a single field it will be plotted against the scene number. The `--sort` keyword can control how to sort the data if plotting a single field.
 
 ```
-$ termstac plot items.json eo:cloud_cover --sort eo:cloud_cover
+$ stacterm plot items.json eo:cloud_cover --sort eo:cloud_cover
 ```
 
 ![](images/plot.png)
@@ -115,4 +115,4 @@ $ termstac plot items.json eo:cloud_cover --sort eo:cloud_cover
 
 ## Development
 
-There are a lot more options in the [plotext library](https://github.com/piccolomo/plotext) that could be surfaced here. Additionally, if [support for datetimes](https://github.com/piccolomo/plotext/issues/7) in histograms and plots is added, `termstac` could create temporal histograms, or plot quantities vs date.
+There are a lot more options in the [plotext library](https://github.com/piccolomo/plotext) that could be surfaced here. Additionally, if [support for datetimes](https://github.com/piccolomo/plotext/issues/7) in histograms and plots is added, `stacterm` could create temporal histograms, or plot quantities vs date.

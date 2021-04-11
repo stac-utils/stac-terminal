@@ -1,4 +1,4 @@
-"""termstac module."""
+"""stacterm module."""
 
 from setuptools import find_packages, setup
 
@@ -40,5 +40,5 @@ setup(
         'plotext~=2.3.1'
     ],
     extras_require=extra_reqs,
-    entry_points={"console_scripts": ["termstac = termstac.cli:cli"]},
+    entry_points={"console_scripts": ["stacterm = stacterm.cli:cli"]},
 )

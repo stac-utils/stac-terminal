@@ -1,8 +1,8 @@
-"""Test termstac module."""
+"""Test stacterm module."""
 
-import termstac
+import stacterm
 
 
 def test_version():
     """test version."""
-    assert termstac.__version__
+    assert stacterm.__version__
