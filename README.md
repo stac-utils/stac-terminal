@@ -14,6 +14,25 @@ PySTAC and Pandas are required, along with two dependencies for rendering tables
 
 ## Usage
 
+stacterm main usage is as a CLI progam `stacterm`. Use help to see options available:
+
+```
+$ stacterm -h
+usage: stacterm [-h] {table,cal,hist,plot} ...
+
+Terminal STAC
+
+positional arguments:
+  {table,cal,hist,plot}
+    table               Output a table
+    cal                 Output a calendar
+    hist                Output a histogram
+    plot                Output a plot
+
+optional arguments:
+  -h, --help            show this help message and exit
+```
+
 The detailed usage examples below are shown using a saved file, however `stacterm` can also read in stdin allowing other programs to pipe output to it, such as [pystac-api-client](https://github.com/stac-utils/pystac-api-client).
 
 ```

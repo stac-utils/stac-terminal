@@ -13,7 +13,7 @@ extra_reqs = {
 
 
 setup(
-    name="stac-terminal",
+    name="stacterm",
     version="0.1.0",
     description="STAC Items in the terminal",
     long_description=readme,
