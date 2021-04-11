@@ -38,17 +38,19 @@ def table(items, fields=['date', 'id'], sort=None, style='markdown'):
     tt.print(data, header=fields, style=eval(f"tt.styles.{style}"))
 
 
-def plot(items, x, y, sort=None, line=False):
+def plot(items, x, y=None, sort=None, line=False):
     df = items_to_dataframe(items, sort=sort)
-    #df.sort_values(x, inplace=True)
     if line:
-        plt.plot(df[x])
+        if y is None:
+            plt.plot(df[x])
+        else:
+            plt.plot(df[x], df[y])
     else:
-        plt.scatter(df[x])
+        if y is None:
+            plt.scatter(df[x])
+        else:
+            plt.plot(df[x], df[y])
     plt.show()
-    #fig = tpl.figure(padding=1)
-    #fig.plot(df[x], df[y], title=y, plot_command="plot '-' w points")
-    #fig.show()
 
 
 def histogram(items, field, bins=100):
@@ -56,11 +58,6 @@ def histogram(items, field, bins=100):
     plt.clp()
     plt.hist(df[field].values, bins, label=field)
     plt.show()
-    #counts = df[field].value_counts()
-
-    #fig = tpl.figure(padding=1)
-    #fig.hist(counts.values, counts.index.tolist(), force_ascii=False, bins=100)
-    #fig.show()
 
 
 def calendar(items, date_field='date', label_field='collection'):
@@ -87,6 +84,7 @@ def parse_args(args):
     # table command
     parser = subparsers.add_parser('table', help='Output a table', parents=[parent], formatter_class=dhf)
     parser.add_argument('--fields', help='Fields to include in table', nargs='*', default=['id', 'date'])
+    parser.add_argument('--sort', help='Field to sort by', default=None)
     parser.add_argument('--style', help='Output style', default='markdown')
 
     # calendar command
@@ -101,7 +99,7 @@ def parse_args(args):
     # plot command
     parser = subparsers.add_parser('plot', help='Output a plot', parents=[parent], formatter_class=dhf)
     parser.add_argument('x', help='Field for x value')
-    parser.add_argument('y', help='Field for y value')
+    parser.add_argument('y', help='Field for y value', nargs='?', default=None)
     parser.add_argument('--sort', help='Field to sort by', default=None)
     parser.add_argument('--line', help='Plot as line', default=False, action='store_true')
 
