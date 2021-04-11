@@ -13,31 +13,30 @@ extra_reqs = {
 
 
 setup(
-    name="termstac",
+    name="stac-terminal",
     version="0.1.0",
-    description=u"An Awesome python module",
+    description="STAC Items in the terminal",
     long_description=readme,
     long_description_content_type="text/markdown",
     python_requires=">=3",
     classifiers=[
         "Intended Audience :: Information Technology",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
     keywords="An Awesome python module",
-    author=u"",
-    author_email="",
+    author=u"Matthew Hanson",
+    author_email="matt.a.hanson@gmail.com",
     url="",
     packages=find_packages(exclude=["ez_setup", "examples", "tests"]),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'pystac~=0.5.6',
-        'termtables~=0.2.3',
         'pandas~=1.2.3',
+        'termtables~=0.2.3',
         'plotext~=2.3.1'
     ],
     extras_require=extra_reqs,
