@@ -5,30 +5,14 @@ import sys
 
 import pandas as pd
 import plotext as plt
-from pystac import ItemCollection
 import termtables as tt
-import termplotlib as tpl
 
 from . import __version__
 from .calendar import print_labeled_calendar
+from .utils import items_to_dataframe
 
 
 API_URL = os.getenv('STAC_API_URL', None)
-
-
-def items_to_dataframe(item_collection, sort=None):
-    _items = []
-    for item in item_collection:
-        _items.append({
-            "id": item.id,
-            "collection": item.collection_id,
-            "date": item.datetime.date(),
-            **item.to_dict()['properties']
-        })
-    df = pd.DataFrame(_items)
-    if sort is not None:
-        df.sort_values(sort, inplace=True)
-    return df
 
 
 def table(items, fields=['date', 'id'], sort=None, style='markdown'):
@@ -105,9 +89,10 @@ def parse_args(args):
 
     parsed_args = {k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None}
     if not sys.stdin.isatty():
-        parsed_args['items'] = ItemCollection.from_dict(json.load(parsed_args['items']))        
+        parsed_args['items'] = json.load(parsed_args['items'])
     elif os.path.exists(parsed_args['items']):
-        parsed_args['items'] = ItemCollection.from_file(parsed_args['items'])
+        with open(parsed_args['items']) as f:
+            parsed_args['items'] = json.loads(f.read())
     return parsed_args
 
 
