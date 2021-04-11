@@ -1,0 +1,1 @@
+"""termstac tests suite."""
