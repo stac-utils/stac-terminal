@@ -33,7 +33,7 @@ optional arguments:
   -h, --help            show this help message and exit
 ```
 
-The detailed usage examples below are shown using a saved file, however `stacterm` can also read in stdin allowing other programs to pipe output to it, such as [pystac-api-client](https://github.com/stac-utils/pystac-api-client).
+The detailed usage examples below are shown using a saved file, however `stacterm` can also read in stdin allowing other programs to pipe output to it, such as [pystac-client](https://github.com/stac-utils/pystac-client).
 
 ```
 $ export STAC_API_URL=https://earth-search.aws.element84.com/v0
