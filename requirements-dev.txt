@@ -1,3 +1,7 @@
-pytest
-pytest-cov
+coverage==5.2.*
+flake8==3.8.*
+pytest~=6.2.3
+pytest-cov~=2.11.1
 pre-commit
+codespell==1.17.1
+yapf==0.30.*
