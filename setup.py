@@ -30,7 +30,7 @@ setup(
     keywords="An Awesome python module",
     author=u"Matthew Hanson",
     author_email="matt.a.hanson@gmail.com",
-    url="",
+    url="https://github.com/stac-utils/stac-terminal",
     packages=find_packages(exclude=["ez_setup", "examples", "tests"]),
     include_package_data=True,
     zip_safe=False,
