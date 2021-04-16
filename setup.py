@@ -5,12 +5,6 @@ from setuptools import find_packages, setup
 with open("README.md") as f:
     readme = f.read()
 
-# Dev Requirements
-extra_reqs = {
-    "test": ["pytest", "pytest-cov"],
-    "dev": ["pytest", "pytest-cov", "pre-commit"],
-}
-
 
 setup(
     name="stacterm",
@@ -35,9 +29,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'pandas~=1.2.0',
-        'termtables~=0.2.3',
-        'plotext~=2.3.1'
+        "test": ["pytest", "pytest-cov"],
+        "dev": ["pytest", "pytest-cov", "pre-commit"],
     ],
     extras_require=extra_reqs,
     entry_points={"console_scripts": ["stacterm = stacterm.cli:cli"]},
