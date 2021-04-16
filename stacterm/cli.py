@@ -46,10 +46,9 @@ def histogram(items, field, bins=100):
 
 def calendar(items, date_field='date', label_field='collection'):
     df = items_to_dataframe(items)
-    # get dictionary of dates and values containing the group names
-    df1 = df[[date_field, label_field]]
-    df1[date_field] = pd.to_datetime(df1[date_field]).dt.date
-    events = df1.groupby(date_field)[label_field].unique()
+    df.loc[date_field] = pd.to_datetime(df[date_field]).dt.date
+
+    events = df.groupby(date_field)[label_field].unique()
     events = events.map(lambda x: x[0] if len(x) == 1 else "Multiple")
     print_labeled_calendar(events.to_dict(), label_field=label_field)
 
