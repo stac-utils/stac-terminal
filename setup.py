@@ -35,7 +35,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'pandas~=1.2.3',
+        'pandas~=1.2.0',
         'termtables~=0.2.3',
         'plotext~=2.3.1'
     ],
