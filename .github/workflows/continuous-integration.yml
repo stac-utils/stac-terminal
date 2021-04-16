@@ -29,7 +29,7 @@ jobs:
           restore-keys: pip-
 
       - name: Execute linters and test suites
-        run: ./scripts/cibuild
+        run: pytest
 
       - name: Upload All coverage to Codecov
         uses: codecov/codecov-action@v1
