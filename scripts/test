@@ -23,16 +23,6 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         # Code formatting
         yapf -dpr stacterm tests
 
-        # Code spelling
-        codespell -I .codespellignore -f \
-            stacterm/*.py stacterm/**/*.py \
-            tests/*.py tests/**/*.py \
-            docs/*.rst docs/**/*.rst \
-            docs/*.ipynb docs/**/*.ipynb \
-            scripts/* \
-            *.py \
-            *.md
-
         # Test suite with coverage enabled
         pytest -s --cov stacterm --cov-report term-missing
         coverage xml
