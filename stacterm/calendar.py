@@ -60,7 +60,8 @@ def print_labeled_calendar(events, label_field, cols=3):
                         else:
                             string = str(d.day).rjust(2, ' ')
                             if d in _dates:
-                                string = '%s%sm%s%s' % (col0, labels[events[d]], string, col_end)
+                                string = '%s%sm%s%s' % (
+                                    col0, labels[events[d]], string, col_end)
                             wk.append(string)
                     out += rformat.format(*wk)
                 out += '\n'
