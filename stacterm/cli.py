@@ -108,5 +108,6 @@ def cli():
     elif cmd == 'plot':
         plot(**args)
 
+
 if __name__ == "__main__":
     cli()

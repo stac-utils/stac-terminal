@@ -20,7 +20,7 @@ def print_labeled_calendar(events, label_field, cols=3):
     # generate base calendar array
     Calendar = calendar.Calendar()
     cal = []
-    for yr in range(start_year, end_year+1):
+    for yr in range(start_year, end_year + 1):
         ycal = Calendar.yeardatescalendar(yr, width=cols)
         if yr == start_year and yr == end_year:
             ycal = ycal[row1:row2]
@@ -44,7 +44,7 @@ def print_labeled_calendar(events, label_field, cols=3):
         out += '{:^64}\n\n'.format(_dates[0].year + iy)
         for mrow in yrcal:
             mnum = mrow[0][2][3].month
-            names = [months[mnum], months[mnum+1], months[mnum+2]]
+            names = [months[mnum], months[mnum + 1], months[mnum + 2]]
             out += hformat.format(names[0], names[1], names[2])
             out += hformat.format(days, days, days)
             for r in range(0, len(mrow[0])):
@@ -68,6 +68,6 @@ def print_labeled_calendar(events, label_field, cols=3):
     # print labels
     out += f"{label_field}:\n"
     for lbl, col in labels.items():
-        vals = list(_labels)
+        # vals = list(_labels)
         out += '  %s%sm%s %s\n' % (col0, col, lbl, col_end)
     print(out)
