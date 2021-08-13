@@ -50,10 +50,17 @@ def parse_args(args):
                         help='Label field to use',
                         default='collection')
 
+    # common plotting arguments
+    plot_parser = argparse.ArgumentParser(add_help=False)
+    plot_parser.add_argument('--marker', help='Use this character as a plot marker')
+    plot_parser.add_argument('--color', help='Use this color for the plot markers')
+    plot_parser.add_argument('--background-color', dest='background_color', help='Use this color for background')
+    plot_parser.add_argument('--text-color', dest='text_color', help='Use this color for axes text')
+
     # histogram command
     parser = subparsers.add_parser('hist',
                                    help='Output a histogram',
-                                   parents=[parent],
+                                   parents=[parent, plot_parser],
                                    formatter_class=dhf)
     parser.add_argument('field',
                         help='Plot histogram of this quantity',
@@ -62,12 +69,11 @@ def parse_args(args):
     # plot command
     parser = subparsers.add_parser('plot',
                                    help='Output a plot',
-                                   parents=[parent],
+                                   parents=[parent, plot_parser],
                                    formatter_class=dhf)
     parser.add_argument('x', help='Field for x value')
     parser.add_argument('y', help='Field for y value', nargs='?', default=None)
     parser.add_argument('--sort', help='Field to sort by', default=None)
-    parser.add_argument('--marker', help='Use this character as a plot marker')
     parser.add_argument('--fillx',
                         help='Fills the area between data and x axis',
                         default=False,
