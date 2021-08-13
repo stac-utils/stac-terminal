@@ -6,7 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Date fields (`datetime`, `created`, `updated`) can now be used in histograms and plots (on x-axis)
+- Derived date fields added to Item fields (`date`, `year`, `year-month`) for use in histograms and plots
+- marker keyword added to plot for changing plot symbol
+- fillx keyword added to plot to fill in region between data and x-axis
 
+### Changed
+- Updated plotext version
+- Separated out CLI functionality into new modules: `histogram`, `plot`, `table`. (`calendar` was already a module)
 
 ## [v0.1.0] - 2021-04-16
 
