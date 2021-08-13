@@ -13,6 +13,6 @@ def print_plot(items, x, y=None, sort=None, marker=None, fillx=False):
         plt.scatter(_x, marker=marker, fillx=fillx)
     else:
         plt.plot(_x, y_list, marker=marker, fillx=fillx)
-        plt.xticks(_x, x)
+        plt.xticks(_x, x_list)
 
     plt.show()
