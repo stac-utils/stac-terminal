@@ -33,6 +33,16 @@ optional arguments:
   -h, --help            show this help message and exit
 ```
 
+All of the sub-commands in `stacterm` can take optional field names. A field name is:
+
+- `id`: The ID of the Item
+- `collection`: The collection of the Item
+- Dates
+  - `date`: The date portion of the Item's `datetime` field
+  - `year-month`: The year and month of the Item's `datetime` field
+  - `year`: The year of the Item's `datetime` field
+- Any property
+
 The detailed usage examples below are shown using a saved file, however `stacterm` can also read in stdin allowing other programs to pipe output to it, such as [pystac-client](https://github.com/stac-utils/pystac-client).
 
 ```
@@ -41,13 +51,6 @@ $ stac-client search --intersects aoi.json --datetime 2020-07-01/2020-12-31 -c s
 ```
 
 ![](images/cal.png)
-
-All of the sub-commands in `stacterm` can take optional field names. A field name is:
-
-- `id`: The ID of the Item
-- `date`: The date portion of the Item's `datetime` field
-- `collection`: The collection of the Item
-- Any property
 
 
 ### Tables

@@ -67,9 +67,11 @@ def parse_args(args):
     parser.add_argument('x', help='Field for x value')
     parser.add_argument('y', help='Field for y value', nargs='?', default=None)
     parser.add_argument('--sort', help='Field to sort by', default=None)
-    parser.add_argument('--marker',
-                        help='Use this character as a plot marker')
-    parser.add_argument('--fillx', help='Fills the area between data and x axis', default=False, action='store_true')
+    parser.add_argument('--marker', help='Use this character as a plot marker')
+    parser.add_argument('--fillx',
+                        help='Fills the area between data and x axis',
+                        default=False,
+                        action='store_true')
 
     parsed_args = {
         k: v
