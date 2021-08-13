@@ -53,11 +53,20 @@ def parse_args(args):
     # common plotting arguments
     plot_parser = argparse.ArgumentParser(add_help=False)
     plot_parser.add_argument('--title', help='Add plot title')
-    plot_parser.add_argument('--marker', help='Use this character as a plot marker')
-    plot_parser.add_argument('--color', help='Use this color for the plot markers')
-    plot_parser.add_argument('--background-color', dest='background_color', help='Use this color for background')
-    plot_parser.add_argument('--axes-color', dest='axes_color', help='Use this color for axes text')
-    plot_parser.add_argument('--grid', help='Add x/y grid to plot', default=False, action='store_true')
+    plot_parser.add_argument('--marker',
+                             help='Use this character as a plot marker')
+    plot_parser.add_argument('--color',
+                             help='Use this color for the plot markers')
+    plot_parser.add_argument('--background-color',
+                             dest='background_color',
+                             help='Use this color for background')
+    plot_parser.add_argument('--axes-color',
+                             dest='axes_color',
+                             help='Use this color for axes text')
+    plot_parser.add_argument('--grid',
+                             help='Add x/y grid to plot',
+                             default=False,
+                             action='store_true')
 
     # histogram command
     parser = subparsers.add_parser('hist',

@@ -3,8 +3,17 @@ import plotext as plt
 from .utils import DATE_FIELDS, items_to_dataframe
 
 
-def print_plot(items, x, y=None, sort=None, fillx=False, title=None, grid=False,
-               marker=None, color=None, background_color=None, axes_color=None):
+def print_plot(items,
+               x,
+               y=None,
+               sort=None,
+               fillx=False,
+               title=None,
+               grid=False,
+               marker=None,
+               color=None,
+               background_color=None,
+               axes_color=None):
     df = items_to_dataframe(items, sort=sort)
     x_list = df[x].tolist()
     y_list = df[y].tolist() if y else None
