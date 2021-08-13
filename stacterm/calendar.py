@@ -1,7 +1,20 @@
 import calendar
 
+import pandas as pd
 
-def print_labeled_calendar(events, label_field, cols=3):
+from .utils import items_to_dataframe
+
+
+def print_calendar(items, date_field='date', label_field='collection'):
+    df = items_to_dataframe(items)
+    df.loc[date_field] = pd.to_datetime(df[date_field]).dt.date
+
+    events = df.groupby(date_field)[label_field].unique()
+    events = events.map(lambda x: x[0] if len(x) == 1 else "Multiple")
+    print(create_labeled_calendar(events.to_dict(), label_field=label_field))
+
+
+def create_labeled_calendar(events, label_field, cols=3):
     """ Get calendar covering all dates, with provided dates colored and labeled """
     if len(events.keys()) == 0:
         return ''
@@ -71,4 +84,4 @@ def print_labeled_calendar(events, label_field, cols=3):
     for lbl, col in labels.items():
         # vals = list(_labels)
         out += '  %s%sm%s %s\n' % (col0, col, lbl, col_end)
-    print(out)
+    return out

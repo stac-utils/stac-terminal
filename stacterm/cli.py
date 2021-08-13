@@ -3,53 +3,11 @@ import json
 import os
 import sys
 
-import pandas as pd
-import plotext as plt
-import termtables as tt
-
 from . import __version__
-from .calendar import print_labeled_calendar
-from .utils import items_to_dataframe
-
-API_URL = os.getenv('STAC_API_URL', None)
-
-
-def table(items, fields=['date', 'id'], sort=None, style='markdown'):
-    _sort = fields[0] if sort is None else sort
-    df = items_to_dataframe(items, sort=_sort)
-    data = df[fields].values
-    tt.print(data, header=fields, style=eval(f"tt.styles.{style}"))
-
-
-def plot(items, x, y=None, sort=None, line=False):
-    df = items_to_dataframe(items, sort=sort)
-    if line:
-        if y is None:
-            plt.plot(df[x])
-        else:
-            plt.plot(df[x], df[y])
-    else:
-        if y is None:
-            plt.scatter(df[x])
-        else:
-            plt.plot(df[x], df[y])
-    plt.show()
-
-
-def histogram(items, field, bins=100):
-    df = items_to_dataframe(items)
-    plt.clp()
-    plt.hist(df[field].values, bins, label=field)
-    plt.show()
-
-
-def calendar(items, date_field='date', label_field='collection'):
-    df = items_to_dataframe(items)
-    df.loc[date_field] = pd.to_datetime(df[date_field]).dt.date
-
-    events = df.groupby(date_field)[label_field].unique()
-    events = events.map(lambda x: x[0] if len(x) == 1 else "Multiple")
-    print_labeled_calendar(events.to_dict(), label_field=label_field)
+from .calendar import print_calendar
+from .histogram import print_histogram
+from .plot import print_plot
+from .table import print_table
 
 
 def parse_args(args):
@@ -131,13 +89,13 @@ def cli():
 
     cmd = args.pop('command')
     if cmd == 'table':
-        table(**args)
+        print_table(**args)
     elif cmd == 'cal':
-        calendar(**args)
+        print_calendar(**args)
     elif cmd == 'hist':
-        histogram(**args)
+        print_histogram(**args)
     elif cmd == 'plot':
-        plot(**args)
+        print_plot(**args)
 
 
 if __name__ == "__main__":
