@@ -31,7 +31,7 @@ setup(
     install_requires=[
         "pandas~=1.2.0",
         "termtables~=0.2.3",
-        "plotext~=2.3.1"
+        "plotext~=3.1"
     ],
     extras_require={
         "test": ["pytest", "pytest-cov"],
