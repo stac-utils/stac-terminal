@@ -18,7 +18,7 @@ def items_to_dataframe(item_collection, sort=None):
             'timestamp': dt.timestamp(),
             **item['properties']
         })
-    
+
     df = pd.DataFrame(_items)
     df['datetime'] = pd.to_datetime(df['datetime'])
     df['date'] = df['datetime'].apply(datetime.date)
