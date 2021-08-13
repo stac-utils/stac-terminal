@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Date fields (`datetime`, `created`, `updated`) can now be used in histograms and plots (on x-axis)
 - Derived date fields added to Item fields (`date`, `year`, `year-month`) for use in histograms and plots
 - marker keyword added to plot for changing plot symbol
-- `color`, `background_color`, `text_color` options added to control color of histograms and plots
+- `color`, `background_color`, `axes_color` options added to control color of histograms and plots
+- `grid` option added to add x/y grid to histograms and plots
 - fillx keyword added to plot to fill in region between data and x-axis
 
 ### Changed
