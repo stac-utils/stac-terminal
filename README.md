@@ -103,7 +103,7 @@ $ stacterm table items.json --fields id date platform sentinel:grid_square --sor
 
 ### Calendars
 
-A UNIX-like calendar (see [`cal`](https://en.wikipedia.org/wiki/Cal_(Unix))) is available to show dates of individual items. By default `cal` will use the field `datetime` (the collection datetime) and group Items by their Collection. These can be overridden by the `--date_field` and `--label_field` keywords. Note that the specified `--date_field` needs to be a date field, such as `created` or `updated`.
+A UNIX-like calendar (see [`cal`](https://en.wikipedia.org/wiki/Cal_(Unix))) is available to show dates of individual items. By default `cal` will use the field `datetime` (the collection datetime) and group Items by their Collection. These can be overridden by the `--date_field` and `--label_field` keywords. Note that the specified `--date_field` needs to be a date field, such as `created` or `updated`.  `--label_field` will group and label items by the provided field.
 
 ```
 $ stacterm cal items.json --date_field created --label_field gsd
@@ -113,7 +113,7 @@ $ stacterm cal items.json --date_field created --label_field gsd
 
 ### Histograms
 
-Histograms can be created for any numeric field.
+Histograms can be created for any numeric field and `datetime` and `date` (just the date portion of `datetime`). `created` and `updated` may also be specified if available in all Items.
 
 ```
 $ stacterm hist items.json eo:cloud_cover
@@ -123,13 +123,18 @@ $ stacterm hist items.json eo:cloud_cover
 
 ### Plots
 
-Plots can be created with 1 or 2 numeric fields. If a single field it will be plotted against the scene number. The `--sort` keyword can control how to sort the data if plotting a single field.
+Plots can be created with a single numeric fields, a date field (`datetime`, `date`, `created`, or `updated`) and a numeric field, or two numeric fields. If a single field it will be plotted against the scene number. The `--sort` keyword can control how to sort the data if plotting a single field.
 
 ```
 $ stacterm plot items.json eo:cloud_cover --sort eo:cloud_cover
 ```
 
 ![](images/plot.png)
+
+
+## Limitations
+
+Currently any provided field must exist in all STAC Items.
 
 
 ## Development
