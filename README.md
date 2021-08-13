@@ -10,7 +10,7 @@ Install from PyPi:
 $ pip install stacterm
 ```
 
-PySTAC and Pandas are required, along with two dependencies for rendering tables (`termtables`) and plots (`plotext`) in the terminal.
+PySTAC and Pandas are required, along with two dependencies for rendering tables ([termtables](https://pypi.org/project/termtables/)) and plots ([plotext](https://pypi.org/project/plotext/)) in the terminal.
 
 ## Usage
 
@@ -133,6 +133,19 @@ $ stacterm plot items.json eo:cloud_cover --sort eo:cloud_cover
 ```
 
 ![](images/plot.png)
+
+
+## Markers and Colors
+
+For histograms and plots there are options for changing the marker (symbol) and color of the plot, background, and text. These options all come directly from [plotext](https://github.com/piccolomo/plotext).
+
+In addition to a marker being able to be any single character, the following names can also be provided for these symbols:
+
+![](https://raw.githubusercontent.com/piccolomo/plotext/master/images/markers.png)
+
+Color names can be provided as follows:
+
+![](https://raw.githubusercontent.com/piccolomo/plotext/master/images/colors.png)
 
 
 ## Limitations
