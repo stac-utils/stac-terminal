@@ -5,7 +5,7 @@ import pandas as pd
 from .utils import items_to_dataframe
 
 
-def print_calendar(items, date_field='date', label_field='collection'):
+def print_calendar(items, date_field="date", label_field="collection"):
     df = items_to_dataframe(items)
     df.loc[date_field] = pd.to_datetime(df[date_field]).dt.date
 
@@ -15,9 +15,9 @@ def print_calendar(items, date_field='date', label_field='collection'):
 
 
 def create_labeled_calendar(events, label_field, cols=3):
-    """ Get calendar covering all dates, with provided dates colored and labeled """
+    """Get calendar covering all dates, with provided dates colored and labeled"""
     if len(events.keys()) == 0:
-        return ''
+        return ""
     # events is {'date': 'label'}
     _dates = sorted(events.keys())
     _labels = set(events.values())
@@ -45,16 +45,16 @@ def create_labeled_calendar(events, label_field, cols=3):
 
     # month and day headers
     months = calendar.month_name
-    days = 'Mo Tu We Th Fr Sa Su'
-    hformat = '{:^20}  {:^20}  {:^20}\n'
-    rformat = ' '.join(['{:>2}'] * 7) + '  '
+    days = "Mo Tu We Th Fr Sa Su"
+    hformat = "{:^20}  {:^20}  {:^20}\n"
+    rformat = " ".join(["{:>2}"] * 7) + "  "
 
     # create output
-    col0 = '\033['
-    col_end = '\033[0m'
-    out = ''
+    col0 = "\033["
+    col_end = "\033[0m"
+    out = ""
     for iy, yrcal in enumerate(cal):
-        out += '{:^64}\n\n'.format(_dates[0].year + iy)
+        out += f"{_dates[0].year + iy:^64}\n\n"
         for mrow in yrcal:
             mnum = mrow[0][2][3].month
             names = [months[mnum], months[mnum + 1], months[mnum + 2]]
@@ -63,25 +63,29 @@ def create_labeled_calendar(events, label_field, cols=3):
             for r in range(0, len(mrow[0])):
                 for c in range(0, cols):
                     if len(mrow[c]) == 4:
-                        mrow[c].append([''] * 7)
+                        mrow[c].append([""] * 7)
                     if len(mrow[c]) == 5:
-                        mrow[c].append([''] * 7)
+                        mrow[c].append([""] * 7)
                     wk = []
                     for d in mrow[c][r]:
-                        if d == '' or d.month != (mnum + c):
-                            wk.append('')
+                        if d == "" or d.month != (mnum + c):
+                            wk.append("")
                         else:
-                            string = str(d.day).rjust(2, ' ')
+                            string = str(d.day).rjust(2, " ")
                             if d in _dates:
-                                string = '%s%sm%s%s' % (
-                                    col0, labels[events[d]], string, col_end)
+                                string = "{}{}m{}{}".format(
+                                    col0,
+                                    labels[events[d]],
+                                    string,
+                                    col_end,
+                                )
                             wk.append(string)
                     out += rformat.format(*wk)
-                out += '\n'
-            out += '\n'
+                out += "\n"
+            out += "\n"
     # print labels
     out += f"{label_field}:\n"
     for lbl, col in labels.items():
         # vals = list(_labels)
-        out += '  %s%sm%s %s\n' % (col0, col, lbl, col_end)
+        out += f"  {col0}{col}m{lbl} {col_end}\n"
     return out
