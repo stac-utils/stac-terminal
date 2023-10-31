@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [v0.2.0-rc.2] - 2023-10-31
+## [v0.2.0rc4] - 2023-10-31
+
+### Fixed
+
+- Histograms would not draw due to removed `plot.clp()` method
+
+### Removed
+
+- Support for passing input item collection as command argument: input is now
+  always via stdin, use file redirection instead
+
+## [v0.2.0rc3] - 2023-10-31
 
 ### Added
 
@@ -46,7 +57,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Initial release.
 
-[Unreleased]: <https://github.com/stac-utils/stac-terminal/compare/v0.2.0-rc.2...main>
-[v0.2.0-rc.2]: <https://github.com/stac-utils/stac-terminal/compare/v0.2.0-rc.1...v0.2.0-rc.2>
+[Unreleased]: <https://github.com/stac-utils/stac-terminal/compare/v0.2.0-rc.4...main>
+[v0.2.0rc4]: <https://github.com/stac-utils/stac-terminal/compare/v0.2.0-rc.1...v0.2.0rc4>
+[v0.2.0rc3]: <https://github.com/stac-utils/stac-terminal/compare/v0.2.0-rc.1...v0.2.0rc3>
 [v0.2.0-rc.1]: <https://github.com/stac-utils/stac-terminal/compare/v0.1.0...v0.2.0-rc.1>
 [v0.1.0]: <https://github.com/stac-utils/stac-terminal/tree/v0.1.0>
