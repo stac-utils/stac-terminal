@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "setuptools",
-    "setuptools-scm",
+    "setuptools-scm[toml]",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -59,8 +59,7 @@ dev = [
 [tool.setuptools_scm]
 
 [tool.setuptools.dynamic]
-version = {attr = "stacterm.version.__version__"}
-readme = {file = "README.md"}
+readme = {file = "README.md", content-type = "text/markdown"}
 
 [tool.isort]
 profile = "black"
