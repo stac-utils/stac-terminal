@@ -1,0 +1,74 @@
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stacterm"
+authors = [
+    {name = "Matthew Hanson", email = "matt.a.hanson@gmail.com"},
+]
+description = "STAC Items in the terminal"
+requires-python = ">=3"
+keywords = [
+    "stac",
+]
+license = {text = "MIT License"}
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pandas>=1.2",
+    "termtables>=0.2",
+    "plotext>=3.1",
+]
+dynamic = [
+  "version",
+  "readme",
+]
+
+[project.scripts]
+stacterm = "stacterm.cli:cli"
+
+[project.urls]
+homepage = "https://github.com/stac-utils/stac-terminal"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit >=3.1.1",
+    "pre-commit-hooks >=4.4.0",
+    "black >=23.1.0",
+    "ruff >=0.0.253",
+    "mypy >=1.0.1",
+    "pip-tools >=6.12.3",
+    "pytest >=7.2.2",
+    "pytest-cov >=4.0.0",
+    "pyupgrade >=3.3.1",
+    "isort >=5.12.0",
+    "types-python-dateutil >=2.8.19.14"
+]
+
+[tool.setuptools_scm]
+
+[tool.setuptools.dynamic]
+version = {attr = "stacterm.version.__version__"}
+readme = {file = "README.md"}
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+
+[tool.ruff]
+ignore = ["E501"]

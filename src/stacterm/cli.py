@@ -3,11 +3,11 @@ import json
 import os
 import sys
 
-from . import __version__
 from .calendar import print_calendar
 from .histogram import print_histogram
 from .plot import print_plot
 from .table import print_table
+from .version import __version__
 
 
 def parse_args(args):
