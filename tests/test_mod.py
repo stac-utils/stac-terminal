@@ -1,8 +1,8 @@
 """Test stacterm module."""
 
-import stacterm
+import stacterm.version
 
 
 def test_version():
     """test version."""
-    assert stacterm.__version__
+    assert stacterm.version.__version__
