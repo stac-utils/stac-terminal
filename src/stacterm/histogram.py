@@ -15,7 +15,6 @@ def print_histogram(
     axes_color=None,
 ):
     df = items_to_dataframe(items)
-    plt.clp()
 
     data = df["timestamp"] if field in DATE_FIELDS else df[field]
 

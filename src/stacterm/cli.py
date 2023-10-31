@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 import sys
 
 from .calendar import print_calendar
@@ -22,7 +21,6 @@ def parse_args(args):
         action="version",
         version=__version__,
     )
-    parent.add_argument("items", nargs="?", default=sys.stdin)
 
     subparsers = parser0.add_subparsers(dest="command")
 
@@ -93,11 +91,7 @@ def parse_args(args):
     parsed_args = {
         k: v for k, v in vars(parser0.parse_args(args)).items() if v is not None
     }
-    if not sys.stdin.isatty():
-        parsed_args["items"] = json.load(parsed_args["items"])
-    elif os.path.exists(parsed_args["items"]):
-        with open(parsed_args["items"]) as f:
-            parsed_args["items"] = json.loads(f.read())
+    parsed_args["items"] = json.load(sys.stdin)
     return parsed_args
 
 
